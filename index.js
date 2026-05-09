@@ -126,8 +126,68 @@ let videojuegos = [
 
 ]
 
+//recurso secundario para incluir las plataformas en las que están disponibles cada videojuego
+//vincula cada videojuego con la plataforma mediante videojuego_id
+let plataformas = [
+
+  // isaac
+  { id: 1, nombre: "PC", videojuego_id: 1 },
+  { id: 2, nombre: "PlayStation 4", videojuego_id: 1 },
+  { id: 3, nombre: "Playstation 5", videojuego_id: 1 },
+  { id: 4, nombre: "Nintendo Switch", videojuego_id: 1 },
+  { id: 5, nombre: "Xbox One", videojuego_id: 1 },
+  { id: 6, nombre: "Xbox Series X/S", videojuego_id: 1 },
+ 
+  // the last of us
+  { id: 7, nombre: "PlayStation 3", videojuego_id: 2 },
+  { id: 8, nombre: "PlayStation 4", videojuego_id: 2 },
+  { id: 9, nombre: "PlayStation 5", videojuego_id: 2 },
+  { id: 10, nombre: "PC", videojuego_id: 2 },
+ 
+  // tears of the kingdom
+  { id: 11, nombre: "Nintendo Switch", videojuego_id: 3 },
+  { id: 12, nombre: "Nintendo Switch 2", videojuego_id: 3 },
+ 
+  // expedition 33
+  { id: 13, nombre: "PC", videojuego_id: 4 },
+  { id: 14, nombre: "PlayStation 5", videojuego_id: 4 },
+  { id: 15, nombre: "Xbox Series X/S", videojuego_id: 4 },
+ 
+  // cocoon
+  { id: 16, nombre: "PC", videojuego_id: 5 },
+  { id: 17, nombre: "Nintendo Switch", videojuego_id: 5 },
+  { id: 18, nombre: "PlayStation 4", videojuego_id: 5 },
+  { id: 19, nombre: "Xbox One", videojuego_id: 5 },
+ 
+  // sekiro 
+  { id: 20, nombre: "PC", videojuego_id: 6 },
+  { id: 21, nombre: "PlayStation 4", videojuego_id: 6 },
+  { id: 22, nombre: "Xbox One", videojuego_id: 6 },
+ 
+  // hollow knight
+  { id: 23, nombre: "PC", videojuego_id: 7 },
+  { id: 24, nombre: "Nintendo Switch", videojuego_id: 7 },
+  { id: 25, nombre: "PlayStation 4", videojuego_id: 7 },
+  { id: 26, nombre: "Xbox One", videojuego_id: 7 },
+ 
+  // baldurs
+  { id: 27, nombre: "PC", videojuego_id: 8 },
+  { id: 28, nombre: "PlayStation 5", videojuego_id: 8 },
+  { id: 29, nombre: "Xbox Series X/S", videojuego_id: 8 },
+ 
+  // doom
+  { id: 30, nombre: "PC", videojuego_id: 9 },
+  { id: 31, nombre: "PlayStation 4", videojuego_id: 9 },
+  { id: 32, nombre: "Xbox One", videojuego_id: 9 },
+  { id: 33, nombre: "Nintendo Switch", videojuego_id: 9 },
+ 
+  // super mario 
+  { id: 34, nombre: "Nintendo Switch", videojuego_id: 10 },
+];
+
 //añadido el endopoint de videojuegos para mostrar toda la información disponible
 app.get("/videojuegos", (req, res) => {
     res.status(200).json(videojuegos)
 })
+
 
