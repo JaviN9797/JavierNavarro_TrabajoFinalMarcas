@@ -191,13 +191,25 @@ app.get("/", (req,res) => {
 })
 
 //endpoint para obtener un juego por su id
-app.get("/:id", (req, res) => {
+app.get("/id/:id", (req, res) => {
     let id = parseInt(req.params.id) //para transformar el string en un int
     let juego = videojuegos.find((v) => v.id === id) //busca en el array de videojuegos el que coincida en el id
  
     if (!juego) { //salta el error si ponemos un valor fuera del 1 al 10 en este caso
-        return res.status(404).json({ error: `No se encontró ningún videojuego con id ${id}` })
+        return res.status(404).json({ error: "No hay ningún videojuego con ese id" })
     }
  
+    return res.json(juego) 
+})
+
+//endpoint para obtener un videojuego por su nombre
+app.get("/nombre/:nombre", (req, res) => {
+    let nombre = req.params.nombre
+    let juego = videojuegos.find((v) => v.nombre.toLowerCase() === nombre.toLowerCase()) //para buscar en el array transformando todo a minusculas
+
+    if (!juego) {
+        return res.status(404).json({ error: "No hay ningún videojuego con ese nombre"})
+    }
+
     return res.json(juego)
 })

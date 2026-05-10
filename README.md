@@ -1,5 +1,5 @@
 # JavierNavarro_TrabajoFinalMarcas
-trabajo final de la asignatura de lenguajes de marcas, que se crea una API
+Trabajo final de la asignatura de lenguajes de marcas, que se crea una API
 
 La api se centrará en una serie de títulos de videojuegos, que bajo mi punto de vista son de los mejores de la última década.
 
@@ -9,11 +9,14 @@ Lo he establecido en el puerto 8080 por lo que se inicializa de forma local con 
 
 Como he establecido el array de videojuegos para ir añadiendo los títulos con sus respectivos atributos. 
 
-** 
-Para acceder a los datos principales y de forma completa,
-se hará con localhost:8080
 
-**
-Para acceder a un juego por su id se buscaria con por su id (en el id ponemos el número que quieras buscar del 1 al 10)
-localhost:8080/id
+## Para acceder a los datos principales y de forma completa.
+Se hará con localhost:8080
 
+## Para acceder a un juego por su id 
+Se buscaria con por su id (en el id ponemos el número que quieras buscar del 1 al 10)
+**localhost:8080/id/5**
+
+
+## Para acceder a un juego por su nombre
+**localhost:8080/nombre/Cocoon**
