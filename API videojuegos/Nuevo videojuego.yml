@@ -1,0 +1,25 @@
+info:
+  name: Nuevo videojuego
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/videojuegos
+  body:
+    type: json
+    data: |-
+      { "nombre": "Elden Ring", 
+       "genero": "RPG", 
+       "empresa": "FromSoftware", 
+       "compositor": "Yuka Kitamura", 
+       "precio": 59.99, 
+       "tieneGoty": true, 
+       "esIndie": false }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

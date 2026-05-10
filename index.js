@@ -227,7 +227,7 @@ app.post("/videojuegos", (req, res) => {
         return res.status(400).json({ error: "El precio tiene que ser un número positivo" }) //precio positivo
     }
  
-    if (typeof tieneGoty||typeof esIndie !== "boolean") { //valor de los booleanos(true o false)
+    if (typeof tieneGoty !== "boolean" || typeof esIndie !== "boolean") { //valor de los booleanos(true o false)
         return res.status(400).json({ error: "tieneGoty o esIndie tiene que ser true o false" })
     }
  
