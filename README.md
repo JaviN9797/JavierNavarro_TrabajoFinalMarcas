@@ -11,12 +11,13 @@ Como he establecido el array de videojuegos para ir añadiendo los títulos con 
 
 
 ## Para acceder a los datos principales y de forma completa.
-Se hará con localhost:8080
+**localhost:8080**
 
 ## Para acceder a un juego por su id 
-Se buscaria con por su id (en el id ponemos el número que quieras buscar del 1 al 10)
+Se buscaria con por su id (en el id ponemos el número que quieras buscar del 1 al 10)  
 **localhost:8080/id/5**
 
 
 ## Para acceder a un juego por su nombre
+Para buscar por el nombre de un videojuego en concreto, no distingue entre minuscula y mayuscula por lo que se puede escribir como quieras  
 **localhost:8080/nombre/Cocoon**
