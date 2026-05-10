@@ -185,9 +185,19 @@ let plataformas = [
   { id: 34, nombre: "Nintendo Switch", videojuego_id: 10 },
 ];
 
-//añadido el endopoint de videojuegos para mostrar toda la información disponible
-app.get("/videojuegos", (req, res) => {
-    res.status(200).json(videojuegos)
+//añadido el endpoint principal para mostrar toda la información disponible
+app.get("/", (req,res) => {
+    return res.json(videojuegos)
 })
 
-
+//endpoint para obtener un juego por su id
+app.get("/:id", (req, res) => {
+    let id = parseInt(req.params.id) //para transformar el string en un int
+    let juego = videojuegos.find((v) => v.id === id) //busca en el array de videojuegos el que coincida en el id
+ 
+    if (!juego) { //salta el error si ponemos un valor fuera del 1 al 10 en este caso
+        return res.status(404).json({ error: `No se encontró ningún videojuego con id ${id}` })
+    }
+ 
+    return res.json(juego)
+})
