@@ -26,7 +26,7 @@ Para buscar por el nombre de un videojuego en concreto, no distingue entre minus
 Para crearlo deberemos insertar todos los campos disponibles (nombre, genero, empresa, compositor, precio, tieneGoty y esIndie)  
 Se crea mediante POST desde la app de Bruno  
 
-En la url pondremos: http://localhost:8080/videojuegos  
+En la url pondremos: **http://localhost:8080/videojuegos**  
 Ejemplo práctico de nuevo POST:  
 {
     "nombre": "Elden Ring",
@@ -36,4 +36,15 @@ Ejemplo práctico de nuevo POST:
     "precio": 59.99,
     "tieneGoty": true,
     "esIndie": false
+}
+
+## Para modificar algún dato del videojuego
+Para modificarlo podremos poner cualquier campo que queramos y se sustituirá. El campo mas modificable es el del precio o si tieneGoty.  
+Para crearlo lo haremos mediante PUT en la app de Bruno.  
+
+En la url pondremos: **http://localhost:8080/videojuegos/6** (para modificar el videojuego con el id=6)  
+Y como ejemplo simplemente pondremos el valor del campo precio:  
+
+{
+    "precio": 34.95
 }
