@@ -185,12 +185,14 @@ let plataformas = [
   { id: 34, nombre: "Nintendo Switch", videojuego_id: 10 },
 ];
 
+
 //añadido el endpoint principal para mostrar toda la información disponible
 app.get("/", (req,res) => {
     return res.json(videojuegos)
 })
 
-//endpoint para obtener un juego por su id
+
+//GET para obtener un juego por su id
 app.get("/id/:id", (req, res) => {
     let id = parseInt(req.params.id) //para transformar el string en un int
     let juego = videojuegos.find((v) => v.id === id) //busca en el array de videojuegos el que coincida en el id
@@ -202,7 +204,7 @@ app.get("/id/:id", (req, res) => {
     return res.json(juego) 
 })
 
-//endpoint para obtener un videojuego por su nombre
+//GET para obtener un videojuego por su nombre
 app.get("/nombre/:nombre", (req, res) => {
     let nombre = req.params.nombre
     let juego = videojuegos.find((v) => v.nombre.toLowerCase() === nombre.toLowerCase()) //para buscar en el array transformando todo a minusculas
@@ -214,7 +216,7 @@ app.get("/nombre/:nombre", (req, res) => {
     return res.json(juego)
 })
 
-//endpoint para crear un nuevo videojuego
+//POST para crear un nuevo videojuego
 
 app.post("/videojuegos", (req, res) => {
     let { nombre, genero, empresa, compositor, precio, tieneGoty, esIndie } = req.body //campos esperados
@@ -244,4 +246,26 @@ app.post("/videojuegos", (req, res) => {
  
     videojuegos.push(nuevoVideojuego) //haciendo push se añade al final del array original (los 10 que ya teníamos)
     return res.status(201).json(nuevoVideojuego) //el 201 significa que se crea correctamente
+})
+
+
+// PUT para modificar un videojuego ya creado
+
+app.put("/videojuegos/:id", (req, res) => {
+    let id = parseInt(req.params.id)
+    let index = videojuegos.findIndex((v) => v.id === id) //busca en el array la posicion del videojuego por el id 
+
+    if (index === -1) { //si el findindex devuelve -1 saltará el error
+        return res.status(404).json({ error: "No se ha encontrado ningún videojuego con ese id" })
+    }
+    //por cada campo se comprueba si viene en el body, si viene lo actualiza
+    if (req.body.nombre) videojuegos[index].nombre = req.body.nombre
+    if (req.body.genero) videojuegos[index].genero = req.body.genero
+    if (req.body.empresa) videojuegos[index].empresa = req.body.empresa
+    if (req.body.compositor) videojuegos[index].compositor = req.body.compositor
+    if (req.body.precio) videojuegos[index].precio = req.body.precio
+    if (req.body.tieneGoty !== undefined) videojuegos[index].tieneGoty = req.body.tieneGoty
+    if (req.body.esIndie !== undefined) videojuegos[index].esIndie = req.body.esIndie
+
+    return res.json(videojuegos[index])
 })
