@@ -48,3 +48,9 @@ Y como ejemplo simplemente pondremos el valor del campo precio:
 {
     "precio": 34.95
 }
+
+## Para borrar un videojuego al completo
+
+Se borrará completamente el videojuego con todos sus atributos simplemente pondremos en la url:  
+**http://localhost:8080/videojuegos/10**  
+Esto eliminará el videojuego con el id: 10

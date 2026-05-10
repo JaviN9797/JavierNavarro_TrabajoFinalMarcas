@@ -269,3 +269,20 @@ app.put("/videojuegos/:id", (req, res) => {
 
     return res.json(videojuegos[index])
 })
+
+
+
+
+// DELETE para eliminar un videojuego
+
+app.delete("/videojuegos/:id", (req, res) => {
+    let id = parseInt(req.params.id)
+    let index = videojuegos.findIndex((v) => v.id === id) //busca en el array la posicion del videojuego por el id 
+
+    if (index === -1) {
+        return res.status(404).json({ error: "No se ha encontrado ningún videojuego con ese id"})
+    }
+
+    videojuegos.splice(index, 1) //borra el elemento que coincida con el id. El 1 significa que borra solo un videojuego.
+    return res.json({ mensaje: "Videojuego eliminado correctamente" })
+})
