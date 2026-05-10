@@ -213,3 +213,35 @@ app.get("/nombre/:nombre", (req, res) => {
 
     return res.json(juego)
 })
+
+//endpoint para crear un nuevo videojuego
+
+app.post("/videojuegos", (req, res) => {
+    let { nombre, genero, empresa, compositor, precio, tieneGoty, esIndie } = req.body //campos esperados
+ 
+    if (!nombre || !genero || !empresa || !compositor || precio === undefined || tieneGoty === undefined ||esIndie=== undefined) {
+        return res.status(400).json({ error: "Falta alguno de los campos"})
+    } //en caso de que falte alguno de los campos, saltará error
+ 
+    if (typeof precio !== "number" || precio < 0) {
+        return res.status(400).json({ error: "El precio tiene que ser un número positivo" }) //precio positivo
+    }
+ 
+    if (typeof tieneGoty||typeof esIndie !== "boolean") { //valor de los booleanos(true o false)
+        return res.status(400).json({ error: "tieneGoty o esIndie tiene que ser true o false" })
+    }
+ 
+    let nuevoVideojuego = { //crea el objeto nuevo 
+        id: videojuegos[videojuegos.length - 1].id + 1,
+        nombre: nombre,
+        genero: genero,
+        empresa: empresa,
+        compositor: compositor,
+        precio: precio,
+        tieneGoty: tieneGoty,
+        esIndie: esIndie
+    }
+ 
+    videojuegos.push(nuevoVideojuego) //haciendo push se añade al final del array original (los 10 que ya teníamos)
+    return res.status(201).json(nuevoVideojuego) //el 201 significa que se crea correctamente
+})

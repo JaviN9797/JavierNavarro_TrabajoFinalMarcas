@@ -21,3 +21,19 @@ Se buscaria con por su id (en el id ponemos el número que quieras buscar del 1 
 ## Para acceder a un juego por su nombre
 Para buscar por el nombre de un videojuego en concreto, no distingue entre minuscula y mayuscula por lo que se puede escribir como quieras  
 **localhost:8080/nombre/Cocoon**
+
+## Para crear un nuevo objeto (videojuego)
+Para crearlo deberemos insertar todos los campos disponibles (nombre, genero, empresa, compositor, precio, tieneGoty y esIndie)  
+Se crea mediante POST desde la app de Bruno  
+
+En la url pondremos: http://localhost:8080/videojuegos  
+Ejemplo práctico de nuevo POST:  
+{
+    "nombre": "Elden Ring",
+    "genero": "RPG",
+    "empresa": "FromSoftware",
+    "compositor": "Yuka Kitamura",
+    "precio": 59.99,
+    "tieneGoty": true,
+    "esIndie": false
+}
