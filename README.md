@@ -11,22 +11,22 @@ Como he establecido el array de videojuegos para ir añadiendo los títulos con 
 
 
 ## Para acceder a los datos principales y de forma completa.
-**localhost:8080**
+GET **http://localhost:8080**
 
 ## Para acceder a un juego por su id 
 Se buscaria con por su id (en el id ponemos el número que quieras buscar del 1 al 10)  
-**localhost:8080/id/5**
+GET **http://localhost:8080/id/5**
 
 
 ## Para acceder a un juego por su nombre
 Para buscar por el nombre de un videojuego en concreto, no distingue entre minuscula y mayuscula por lo que se puede escribir como quieras  
-**localhost:8080/nombre/Cocoon**
+GET **http://localhost:8080/nombre/Cocoon**
 
 ## Para crear un nuevo objeto (videojuego)
 Para crearlo deberemos insertar todos los campos disponibles (nombre, genero, empresa, compositor, precio, tieneGoty y esIndie)  
 Se crea mediante POST desde la app de Bruno  
 
-En la url pondremos: **http://localhost:8080/videojuegos**  
+En la url pondremos: POST **http://localhost:8080/videojuegos**  
 Ejemplo práctico de nuevo POST:  
 {
     "nombre": "Elden Ring",
@@ -42,7 +42,7 @@ Ejemplo práctico de nuevo POST:
 Para modificarlo podremos poner cualquier campo que queramos y se sustituirá. El campo mas modificable es el del precio o si tieneGoty.  
 Para crearlo lo haremos mediante PUT en la app de Bruno.  
 
-En la url pondremos: **http://localhost:8080/videojuegos/6** (para modificar el videojuego con el id=6)  
+En la url pondremos: PUT **http://localhost:8080/videojuegos/6** (para modificar el videojuego con el id=6)  
 Y como ejemplo simplemente pondremos el valor del campo precio:  
 
 {
@@ -52,5 +52,10 @@ Y como ejemplo simplemente pondremos el valor del campo precio:
 ## Para borrar un videojuego al completo
 
 Se borrará completamente el videojuego con todos sus atributos simplemente pondremos en la url:  
-**http://localhost:8080/videojuegos/10**  
+DEL **http://localhost:8080/videojuegos/10**  
 Esto eliminará el videojuego con el id: 10
+
+## Para obtener todas las plataformas
+
+Obtendremos toda la información de las plataformas disponibles de toda nuestra colección de videojuegos  
+GET **http://localhost:8080/plataformas**

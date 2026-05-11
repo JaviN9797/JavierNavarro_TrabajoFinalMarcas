@@ -186,6 +186,8 @@ let plataformas = [
 ];
 
 
+//**ENDPOINTS recurso principal**/
+
 //añadido el endpoint principal para mostrar toda la información disponible
 app.get("/", (req,res) => {
     return res.json(videojuegos)
@@ -285,4 +287,13 @@ app.delete("/videojuegos/:id", (req, res) => {
 
     videojuegos.splice(index, 1) //borra el elemento que coincida con el id. El 1 significa que borra solo un videojuego.
     return res.json({ mensaje: "Videojuego eliminado correctamente" })
+})
+
+
+//**ENDPOINTS recursos secundarios**
+
+//GET para obtener todas las plataformas
+
+app.get("/plataformas", (req, res) => {
+    return res.json(plataformas)
 })
