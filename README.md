@@ -76,3 +76,10 @@ Ejemplo práctico:
     "videojuego_id": 1
 }  
 Añadiría la plataforma de switch 2 al isaac.
+
+## Para eliminar una plataforma de un videojuego existente
+
+Eliminaremos una plataforma en concreta filtrando por el id de la propia plataforma.  
+Por ejemplo para eliminar la plataforma de playstation 5 del the last of us, se haría de la siguiente forma:  
+DELETE **http://localhost:8080/plataformas/9**
+

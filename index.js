@@ -333,3 +333,19 @@ app.post("/plataformas", (req, res) => {
     plataformas.push(nuevaPlataforma)
     return res.status(201).json(nuevaPlataforma)
 })
+
+
+// DELETE eliminar una plataforma
+
+app.delete("/plataformas/:id", (req, res) => {
+    let id = parseInt(req.params.id)
+    let index = plataformas.findIndex((p) => p.id === id) //busqueda por id
+ 
+    if (index === -1) {  //si no encuentra ningún elemento devuelve el error
+        return res.status(404).json({ error: "No se encuentra ninguna plataforma con el id: "+id })
+    }
+ 
+    let eliminada = plataformas[index]
+    plataformas.splice(index, 1) //borra el elemento que coincida por el id de la plataforma
+    return res.json({ mensaje: "Plataforma eliminada correctamente: "+ eliminada.nombre })
+})
