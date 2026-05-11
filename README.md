@@ -59,3 +59,8 @@ Esto eliminará el videojuego con el id: 10
 
 Obtendremos toda la información de las plataformas disponibles de toda nuestra colección de videojuegos  
 GET **http://localhost:8080/plataformas**
+
+## Para obtener la plataforma por id
+
+Tendremos la información de las plataformas disponibles de un videojuego en concreto, lo buscaremos por su id.  
+GET **http://localhost:8080/8/plataformas**

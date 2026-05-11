@@ -297,3 +297,18 @@ app.delete("/videojuegos/:id", (req, res) => {
 app.get("/plataformas", (req, res) => {
     return res.json(plataformas)
 })
+
+
+// GET para obtener las plataformas de un videojuego especifico
+
+app.get("/:id/plataformas", (req, res) => {
+    let id = parseInt(req.params.id)
+    let juego = videojuegos.find((v) => v.id === id) //busca juego por id
+ 
+    if (!juego) {
+        return res.status(404).json({ error: "No se encontró ningún videojuego con ese " +id })
+    }
+ 
+    let plataformasDelJuego = plataformas.filter((p) => p.videojuego_id === id) //busca donde existe el videojuego_id
+    return res.json(plataformasDelJuego)
+})
