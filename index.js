@@ -1,4 +1,4 @@
-//INICIALIZACIÓN DEL SERVIDOR
+//**INICIALIZACIÓN DEL SERVIDOR**
 
 const express= require("express");
 const app= express(); 
@@ -126,7 +126,7 @@ let videojuegos = [
 
 ]
 
-//recurso secundario para incluir las plataformas en las que están disponibles cada videojuego
+//**RECURSO SECUNDARIO** para incluir las plataformas en las que están disponibles cada videojuego
 //vincula cada videojuego con la plataforma mediante videojuego_id
 let plataformas = [
 
@@ -348,4 +348,21 @@ app.delete("/plataformas/:id", (req, res) => {
     let eliminada = plataformas[index]
     plataformas.splice(index, 1) //borra el elemento que coincida por el id de la plataforma
     return res.json({ mensaje: "Plataforma eliminada correctamente: "+ eliminada.nombre })
+})
+
+
+//**BÚSQUEDA Y FILTROS**
+
+//GET para Filtrado por nombre (búsqueda parcial)
+
+app.get("/buscarNombre", (req, res) => {
+    let q = req.query.q //coge el valor de la query param de la URL
+
+    if (!q) {
+        return res.status(400).json({ error: "Debes indicar el parámetro ?q=" })
+    }
+//para filtrar el array que contenga el texto. El .includes devuelve true si contiene el texto
+    let resultado = videojuegos.filter((v) => v.nombre.toLowerCase().includes(q.toLowerCase()))
+    
+    return res.json(resultado)
 })

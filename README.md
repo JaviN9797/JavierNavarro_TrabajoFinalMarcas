@@ -83,3 +83,8 @@ Eliminaremos una plataforma en concreta filtrando por el id de la propia platafo
 Por ejemplo para eliminar la plataforma de playstation 5 del the last of us, se haría de la siguiente forma:  
 DELETE **http://localhost:8080/plataformas/9**
 
+## Para filtrar por nombres de forma parcial
+
+Buscaremos escribiendo parte que contenga el nombre del videojuego que queramos buscar  
+POST **http://localhost:8080/buscarNombre?q=zelda**
+Después de ?q= escribiremos el texto que queramos buscar
