@@ -64,3 +64,15 @@ GET **http://localhost:8080/plataformas**
 
 Tendremos la información de las plataformas disponibles de un videojuego en concreto, lo buscaremos por su id.  
 GET **http://localhost:8080/8/plataformas**
+
+## Para postear una nueva plataforma a un videojuego existente
+
+Añadiremos una plataforma nueva a un videojuego ya creado posteriormente  
+POST **http://localhost:8080/plataformas**
+
+Ejemplo práctico:  
+{
+    "nombre": "Nintendo Switch 2",
+    "videojuego_id": 1
+}  
+Añadiría la plataforma de switch 2 al isaac.

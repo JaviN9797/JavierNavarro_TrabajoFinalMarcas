@@ -200,7 +200,7 @@ app.get("/id/:id", (req, res) => {
     let juego = videojuegos.find((v) => v.id === id) //busca en el array de videojuegos el que coincida en el id
  
     if (!juego) { //salta el error si ponemos un valor fuera del 1 al 10 en este caso
-        return res.status(404).json({ error: "No hay ningún videojuego con ese id" })
+        return res.status(404).json({ error: "No hay ningún videojuego con ese id: "+id })
     }
  
     return res.json(juego) 
@@ -212,7 +212,7 @@ app.get("/nombre/:nombre", (req, res) => {
     let juego = videojuegos.find((v) => v.nombre.toLowerCase() === nombre.toLowerCase()) //para buscar en el array transformando todo a minusculas
 
     if (!juego) {
-        return res.status(404).json({ error: "No hay ningún videojuego con ese nombre"})
+        return res.status(404).json({ error: "No hay ningún videojuego con ese nombre: "+nombre})
     }
 
     return res.json(juego)
@@ -258,7 +258,7 @@ app.put("/videojuegos/:id", (req, res) => {
     let index = videojuegos.findIndex((v) => v.id === id) //busca en el array la posicion del videojuego por el id 
 
     if (index === -1) { //si el findindex devuelve -1 saltará el error
-        return res.status(404).json({ error: "No se ha encontrado ningún videojuego con ese id" })
+        return res.status(404).json({ error: "No se ha encontrado ningún videojuego con ese id: "+id })
     }
     //por cada campo se comprueba si viene en el body, si viene lo actualiza
     if (req.body.nombre) videojuegos[index].nombre = req.body.nombre
@@ -282,7 +282,7 @@ app.delete("/videojuegos/:id", (req, res) => {
     let index = videojuegos.findIndex((v) => v.id === id) //busca en el array la posicion del videojuego por el id 
 
     if (index === -1) {
-        return res.status(404).json({ error: "No se ha encontrado ningún videojuego con ese id"})
+        return res.status(404).json({ error: "No se ha encontrado ningún videojuego con ese id: "+id})
     }
 
     videojuegos.splice(index, 1) //borra el elemento que coincida con el id. El 1 significa que borra solo un videojuego.
@@ -306,9 +306,30 @@ app.get("/:id/plataformas", (req, res) => {
     let juego = videojuegos.find((v) => v.id === id) //busca juego por id
  
     if (!juego) {
-        return res.status(404).json({ error: "No se encontró ningún videojuego con ese " +id })
+        return res.status(404).json({ error: "No se encontró ningún videojuego con ese id: " +id })
     }
  
     let plataformasDelJuego = plataformas.filter((p) => p.videojuego_id === id) //busca donde existe el videojuego_id
     return res.json(plataformasDelJuego)
+})
+
+
+// POST para crear una nueva plataforma
+app.post("/plataformas", (req, res) => {
+    let { nombre, videojuego_id } = req.body //campos que se pide al usuario
+ 
+ 
+    let juego = videojuegos.find((v) => v.id === videojuego_id)
+    if (!juego) { //comprobacion de que el videojuego existe
+        return res.status(404).json({ error: "No se encuentra ningún videojuego con ese id: "+id })
+    }
+ 
+    let nuevaPlataforma = { //para añadir la nueva plataforma
+        id: plataformas[plataformas.length - 1].id + 1, //pilla el elemento anterior y le suma 1
+        nombre: nombre, //será el nombre de la plataforma
+        videojuego_id: videojuego_id //y este id coincidira con el principal del videojuego
+    }
+ 
+    plataformas.push(nuevaPlataforma)
+    return res.status(201).json(nuevaPlataforma)
 })
