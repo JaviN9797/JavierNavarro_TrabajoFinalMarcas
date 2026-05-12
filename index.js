@@ -378,3 +378,14 @@ app.get("/buscarPrecio", (req, res) => {
     // entre el rango que marquemos
     return res.json(resultado)
 })
+
+
+//GET para filtrar por si tieneGoty
+
+app.get("/buscarGoty", (req, res) => {
+    let goty = req.query.tieneGoty === "true" //coge el valor de tieneGoty y lo transforma a booleano para comparara
+    //con si da true o false en su atributo
+
+    let resultado = videojuegos.filter((v) => v.tieneGoty === goty) //filtra el array y se queda con los que coincidan(true o false)
+    return res.json(resultado)
+})

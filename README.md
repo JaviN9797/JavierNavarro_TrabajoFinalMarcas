@@ -86,11 +86,17 @@ DELETE **http://localhost:8080/plataformas/9**
 ## Para filtrar por nombres de forma parcial
 
 Buscaremos escribiendo parte que contenga el nombre del videojuego que queramos buscar  
-POST **http://localhost:8080/buscarNombre?q=zelda**
+GET **http://localhost:8080/buscarNombre?q=zelda**
 Después de ?q= escribiremos el texto que queramos buscar  
 
 ## Para filtrar por rango de precios  
 
 Estableceremos el precio minimo y el precio máximo para buscar el rango de precio que queramos  
 Por ejemplo si queremos buscar un precio entre 0 y 20€ se pondría de la siguiente forma:  
-**http://localhost:8080/buscarPrecio?min=0&max=20**
+GET **http://localhost:8080/buscarPrecio?min=0&max=20**
+
+## Para filtrar si tiene goty o no  
+
+Para obtener los videojuegos que tengan el goty se hará de la siguiente forma:  
+GET **http://localhost:8080/buscarGoty?tieneGoty=true**    
+Para los que no simplemente con poner false, se filtra correctamente.

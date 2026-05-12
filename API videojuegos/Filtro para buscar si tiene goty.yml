@@ -1,0 +1,19 @@
+info:
+  name: Filtro para buscar si tiene goty
+  type: http
+  seq: 13
+
+http:
+  method: GET
+  url: http://localhost:8080/buscarGoty?tieneGoty=true
+  params:
+    - name: tieneGoty
+      value: "true"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
