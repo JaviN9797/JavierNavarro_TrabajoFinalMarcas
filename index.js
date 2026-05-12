@@ -389,3 +389,19 @@ app.get("/buscarGoty", (req, res) => {
     let resultado = videojuegos.filter((v) => v.tieneGoty === goty) //filtra el array y se queda con los que coincidan(true o false)
     return res.json(resultado)
 })
+
+
+// Ordenar por precio ascendente o descendente
+
+app.get("/ordenarPrecio", (req, res) => {
+    let ordenar = req.query.order
+
+    if (!ordenar || (ordenar !== "asc" && ordenar !== "desc")) { //si en la url no encuentra asc o desc saltará el error
+        return res.status(400).json({ error: "Tienes que poner ?order=asc o ?order=desc" })
+    }
+
+    let resultado = [...videojuegos].sort((a, b) => //se realiza una copia del array videojuegos y los ordena comparando los precios 
+        ordenar === "asc" ? a.precio - b.precio : b.precio - a.precio //si a - b da negativo, a va antes. Si da positivo b va antes. Para descendente se invierte restando b - a.
+    )
+    return res.json(resultado)
+})
