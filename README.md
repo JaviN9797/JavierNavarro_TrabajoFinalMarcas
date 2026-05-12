@@ -87,4 +87,10 @@ DELETE **http://localhost:8080/plataformas/9**
 
 Buscaremos escribiendo parte que contenga el nombre del videojuego que queramos buscar  
 POST **http://localhost:8080/buscarNombre?q=zelda**
-Después de ?q= escribiremos el texto que queramos buscar
+Después de ?q= escribiremos el texto que queramos buscar  
+
+## Para filtrar por rango de precios  
+
+Estableceremos el precio minimo y el precio máximo para buscar el rango de precio que queramos  
+Por ejemplo si queremos buscar un precio entre 0 y 20€ se pondría de la siguiente forma:  
+**http://localhost:8080/buscarPrecio?min=0&max=20**

@@ -353,7 +353,7 @@ app.delete("/plataformas/:id", (req, res) => {
 
 //**BÚSQUEDA Y FILTROS**
 
-//GET para Filtrado por nombre (búsqueda parcial)
+//GET para filtrar por nombre (búsqueda parcial)
 
 app.get("/buscarNombre", (req, res) => {
     let q = req.query.q //coge el valor de la query param de la URL
@@ -364,5 +364,17 @@ app.get("/buscarNombre", (req, res) => {
 //para filtrar el array que contenga el texto. El .includes devuelve true si contiene el texto
     let resultado = videojuegos.filter((v) => v.nombre.toLowerCase().includes(q.toLowerCase()))
     
+    return res.json(resultado)
+})
+
+
+//GET para filtrar por precio mínimo y/o máximo
+
+app.get("/buscarPrecio", (req, res) => {
+    let min = parseFloat(req.query.min) //coge el valor min y maximo que pongamos para pasarlo a float
+    let max = parseFloat(req.query.max)
+
+    let resultado = videojuegos.filter((v) => v.precio >= min && v.precio <= max) // Filtra el array para mostrar los videojuegos con el precio 
+    // entre el rango que marquemos
     return res.json(resultado)
 })
