@@ -361,7 +361,7 @@ app.get("/buscarNombre", (req, res) => {
     if (!q) {
         return res.status(400).json({ error: "Debes indicar el parámetro ?q=" })
     }
-//para filtrar el array que contenga el texto. El .includes devuelve true si contiene el texto
+    //para filtrar el array que contenga el texto. El .includes devuelve true si contiene el texto
     let resultado = videojuegos.filter((v) => v.nombre.toLowerCase().includes(q.toLowerCase()))
     
     return res.json(resultado)
@@ -391,7 +391,7 @@ app.get("/buscarGoty", (req, res) => {
 })
 
 
-// Ordenar por precio ascendente o descendente
+//GET para ordenar por precio ascendente o descendente
 
 app.get("/ordenarPrecio", (req, res) => {
     let ordenar = req.query.order
@@ -404,4 +404,22 @@ app.get("/ordenarPrecio", (req, res) => {
         ordenar === "asc" ? a.precio - b.precio : b.precio - a.precio //si a - b da negativo, a va antes. Si da positivo b va antes. Para descendente se invierte restando b - a.
     )
     return res.json(resultado)
+})
+
+//**ENDPOINTS de estadísticas y utilidades**
+
+// GET media, máximo y mínimo del precio
+app.get("/videojuegos/stats/precio", (req, res) => {
+    let precios = videojuegos.map((v) => v.precio) //Recorre el array de videojuegos y saca solo los precios. Crea un nuevo array solo de precios. 
+    let media = precios.reduce((acumulador, p) => acumulador + p, 0) / precios.length //Calcula la media. Reduce suma todos los precios.
+    // 0 es el valor inicial del acumulador. Al final divide la suma total entre el numero de precios.
+    
+ let maximo = Math.max.apply(null, precios) //busca el mayor valor del array precios
+let minimo = Math.min.apply(null, precios) //busca el menor
+
+    return res.json({
+        media: parseFloat(media.toFixed(2)), //redondea el resultado a 2 decimales
+        maximo: maximo,
+        minimo: minimo
+    })
 })

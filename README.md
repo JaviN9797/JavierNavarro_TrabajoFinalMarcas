@@ -100,3 +100,15 @@ GET **http://localhost:8080/buscarPrecio?min=0&max=20**
 Para obtener los videojuegos que tengan el goty se hará de la siguiente forma:  
 GET **http://localhost:8080/buscarGoty?tieneGoty=true**    
 Para los que no simplemente con poner false, se filtra correctamente.
+
+## Para filtrar el precio en orden ascendente o descendente
+
+Para obtener los videojuegos ordenados por el precio de forma ascendente se hará de la siguiente forma  
+GET **http://localhost:8080/ordenarPrecio?order=asc**  
+Para hacerlo de forma descendiente solo hay que cambiar el final  
+GET **http://localhost:8080/ordenarPrecio?order=desc**  
+
+## Para obtener el precio máximo, mínimo y la media del precio de los videojuegos
+
+Para obtener los 3 valores lo haremos de la siguiente forma  
+GET **http://localhost:8080/videojuegos/stats/precio**
