@@ -383,7 +383,7 @@ app.get("/buscarPrecio", (req, res) => {
 //GET para filtrar por si tieneGoty
 
 app.get("/buscarGoty", (req, res) => {
-    let goty = req.query.tieneGoty === "true" //coge el valor de tieneGoty y lo transforma a booleano para comparara
+    let goty = req.query.tieneGoty === "true" //coge el valor de tieneGoty y lo transforma a booleano para comparar
     //con si da true o false en su atributo
 
     let resultado = videojuegos.filter((v) => v.tieneGoty === goty) //filtra el array y se queda con los que coincidan(true o false)
@@ -433,7 +433,7 @@ app.get("/videojuegos/stats/top", (req, res) => {
     let orden = req.query.orden || "mayor" //si no hay parametro usa mayor
  
     if (isNaN(n) || n <= 0) { //si n no es un número o es un numero positivo
-        return res.status(400).json({ error: "El parámetro ?n= debe ser un número positivo" })
+        return res.status(400).json({ error: "El parámetro ?n= tiene que ser un número positivo" })
     }
  
     let ordenados = [...videojuegos].sort((a, b) => //copia el array y lo ordena
@@ -450,4 +450,27 @@ return res.json({
 totalVideojuegos: videojuegos.length, //para devolver el numero de videojuegos
 totalPlataformas: plataformas.length //para devolver el numero de plataformas
 })
+})
+
+
+// GET agrupar y contar videojuegos por un campo especifico
+
+app.get("/videojuegos/agrupar", (req, res) => {
+    let campo = req.query.campo
+ 
+    if (!campo) { //si no existe el campo 
+        return res.status(400).json({ error: "Tienes que indicar el campo" })
+    }
+ 
+    if (!(campo in videojuegos[0])) { //para comprobar si el campo existe en el array de videojuegos
+        return res.status(400).json({ error: "El campo no existe"})
+    }
+ 
+    let agrupado = videojuegos.reduce((contador, juego) => {//recorre el array y comienza el contador en 0
+        let valor = String(juego[campo]) //coge el valor del campo
+        contador[valor] = (contador[valor] || 0) + 1 //y le suma 1 al contador || si no existía empieza en 0
+        return contador
+    }, {})
+ 
+    return res.json(agrupado)
 })

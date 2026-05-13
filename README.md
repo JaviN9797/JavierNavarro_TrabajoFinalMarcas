@@ -125,4 +125,13 @@ GET **http://localhost:8080/videojuegos/stats/top?n=5&orden=mayor**
 ## Para obtener el número total de videojuegos y plataformas  
 
 Solo nos devolverá el total de ambos campos y ser hace de la siguiente forma  
-GET **http://localhost:8080/totales**
+GET **http://localhost:8080/totales**  
+
+## Para obtener el conteo de un campo en específico  
+
+Podemos elegir el campo que queramos para que nos cuente el número de veces en total que aparece en nuestra lista de videojuegos. Por ejemplo
+para mostrar el número de veces que sale el género se haría de la siguiente forma:  
+GET **http://localhost:8080/videojuegos/agrupar?campo=genero**  
+
+Otro ejemplo si queremos contar la empresa, simplemente cambiamos el valor del campo:  
+GET **http://localhost:8080/videojuegos/agrupar?campo=empresa**  
