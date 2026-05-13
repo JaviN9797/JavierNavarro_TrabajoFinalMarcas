@@ -120,4 +120,9 @@ GET **http://localhost:8080/videojuegos/stats/top?n=3&orden=menor**
 Podremos modificar el valor de n para establecer el número de videojuegos que queramos mostrar  
 
 Para tener el top de más caros simplemente modificaremos "menor" por "mayor"  
-GET **http://localhost:8080/videojuegos/stats/top?n=5&orden=mayor**
+GET **http://localhost:8080/videojuegos/stats/top?n=5&orden=mayor**  
+
+## Para obtener el número total de videojuegos y plataformas  
+
+Solo nos devolverá el total de ambos campos y ser hace de la siguiente forma  
+GET **http://localhost:8080/totales**

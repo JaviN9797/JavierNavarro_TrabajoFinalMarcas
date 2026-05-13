@@ -409,6 +409,7 @@ app.get("/ordenarPrecio", (req, res) => {
 //**ENDPOINTS de estadísticas y utilidades**
 
 // GET media, máximo y mínimo del precio
+
 app.get("/videojuegos/stats/precio", (req, res) => {
     let precios = videojuegos.map((v) => v.precio) //Recorre el array de videojuegos y saca solo los precios. Crea un nuevo array solo de precios. 
     let media = precios.reduce((acumulador, p) => acumulador + p, 0) / precios.length //Calcula la media. Reduce suma todos los precios.
@@ -440,4 +441,13 @@ app.get("/videojuegos/stats/top", (req, res) => {
     )
  
     return res.json(ordenados.slice(0, n))
+})
+
+// GET total de videojuegos y plataformas 
+
+app.get("/totales", (req, res) => {
+return res.json({
+totalVideojuegos: videojuegos.length, //para devolver el numero de videojuegos
+totalPlataformas: plataformas.length //para devolver el numero de plataformas
+})
 })
