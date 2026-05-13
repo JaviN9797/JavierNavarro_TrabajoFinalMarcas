@@ -423,3 +423,21 @@ let minimo = Math.min.apply(null, precios) //busca el menor
         minimo: minimo
     })
 })
+
+
+// GET top N videojuegos más caros o más baratos
+
+app.get("/videojuegos/stats/top", (req, res) => {
+    let n = parseInt(req.query.n)
+    let orden = req.query.orden || "mayor" //si no hay parametro usa mayor
+ 
+    if (isNaN(n) || n <= 0) { //si n no es un número o es un numero positivo
+        return res.status(400).json({ error: "El parámetro ?n= debe ser un número positivo" })
+    }
+ 
+    let ordenados = [...videojuegos].sort((a, b) => //copia el array y lo ordena
+        orden === "menor" ? a.precio - b.precio : b.precio - a.precio //si orden es menor, ordena de menor a mayor
+    )
+ 
+    return res.json(ordenados.slice(0, n))
+})

@@ -111,4 +111,13 @@ GET **http://localhost:8080/ordenarPrecio?order=desc**
 ## Para obtener el precio máximo, mínimo y la media del precio de los videojuegos
 
 Para obtener los 3 valores lo haremos de la siguiente forma  
-GET **http://localhost:8080/videojuegos/stats/precio**
+GET **http://localhost:8080/videojuegos/stats/precio**  
+
+## Para obtener el top N de videojuegos mas baratos o mas caros  
+
+Para obtener por ejemplo el top 3 de videojuegos mas baratos se haría de la siguiente forma  
+GET **http://localhost:8080/videojuegos/stats/top?n=3&orden=menor**
+Podremos modificar el valor de n para establecer el número de videojuegos que queramos mostrar  
+
+Para tener el top de más caros simplemente modificaremos "menor" por "mayor"  
+GET **http://localhost:8080/videojuegos/stats/top?n=5&orden=mayor**
