@@ -63,7 +63,7 @@ GET **http://localhost:8080/plataformas**
 ## Para obtener la plataforma por id
 
 Tendremos la información de las plataformas disponibles de un videojuego en concreto, lo buscaremos por su id.  
-GET **http://localhost:8080/8/plataformas**
+GET **http://localhost:8080/plataformas/8**
 
 ## Para postear una nueva plataforma a un videojuego existente
 

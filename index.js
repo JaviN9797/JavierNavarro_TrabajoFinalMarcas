@@ -301,7 +301,7 @@ app.get("/plataformas", (req, res) => {
 
 // GET para obtener las plataformas de un videojuego especifico
 
-app.get("/:id/plataformas", (req, res) => {
+app.get("/plataformas/:id", (req, res) => {
     let id = parseInt(req.params.id)
     let juego = videojuegos.find((v) => v.id === id) //busca juego por id
  
